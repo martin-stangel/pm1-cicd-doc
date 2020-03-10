@@ -97,7 +97,7 @@ they must be explicitly enabled in commit message by a line in format:
 test:<switch1>[,<switch2>...]
 ``` 
 
-For example `test:ebp` would enable EBP integration tests. For reference of all
+For example `test:ebp` would enable EBP Arquillian tests. For reference of all
 supported switches see [Commit Message Switches Reference](#commit-message-switches-reference)
 
 ### Cleanup before/after Build
@@ -194,17 +194,17 @@ Here is list of supported swtches:
 * *test:all*  
   tests all projects regardless of changes
 
-* *test:onePass*  
-  tests only affected projects by a single command: 
-  `mvn install --project <affected projects> --also-make` 
-
 * *no switch (default)*  
-   tests only affected projects by two commands: 
-   1. `mvn install ---project <affected projects> --also-make DskipTests=true` 
-   2. `mvn install  --project <affected projects>`
-
+   tests only affected projects by commands: 
+   1. `mvn install --project <dependency projects> -DskipTests=true` 
+   2. `mvn install --project <affected projects> -DskipArquillianTests=true`
+   3. `mvn install --project <explicitly selected projects>`
+   
 * *test:integration|ebp|valuation*:  
-explicitly adds integration tests projects to list of affected projects.
+executes Arquillian tests for pm1-integration-tests, pm1-valuation-it or ebp-it
+projects respectively in addition to normal tests. Effectively adds third
+testing command:
+   3. `mvn install --project <explicitly selected projects>`
 
 * *test:rebase*  
 Automatically rebases commit on top of its branch at the beginning of pipeline.
