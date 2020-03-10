@@ -200,10 +200,10 @@ Here is list of supported swtches:
    2. `mvn install --project <affected projects> -DskipArquillianTests=true`
    
 * *test:integration|ebp|valuation*:  
-executes Arquillian tests for pm1-integration-tests, pm1-valuation-it or ebp-it
-projects respectively in addition to normal tests. Effectively adds third
-testing command:
-   3. `mvn install --project <explicitly selected projects>`
+  executes Arquillian tests for pm1-integration-tests, pm1-valuation-it or ebp-it
+  projects respectively in addition to normal tests. Effectively adds third
+  testing command:
+  3. `mvn install --project <explicitly selected projects>`
 
 * *test:rebase*  
 Automatically rebases commit on top of its branch at the beginning of pipeline.
