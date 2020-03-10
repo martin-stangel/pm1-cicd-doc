@@ -1,0 +1,52 @@
+# Setting up Jenkins slave
+
+We have created an automated installation of Ubuntu on USB stick. After plugging
+it in and booting up from the stick the machine is ready to act as Jenkins slave.
+You can request the USB stick from `mas`, `tva` or `msf`. Its source code is 
+stored at git repo `git.bts.whitestein.net/git/sysadm`.
+
+### Shared GIDs and UIDs
+
+Due to permissions problems, users/groups in all containers must have same uids
+The following groups are created on all Jenkins slaves:
+
+| group  |  gid  |
+|--------|-------|
+| docker | 2000  |
+|jenkins | 1000  |
+|oinstall| 501   |
+|dba     | 500   |
+
+The following users are created:
+
+|  user   | uid  | groups        |
+|---------|------|---------------|
+|jenkins  | 1000 |jenkins, docker|
+|oracle   | 500  |oinstall, dba  |
+
+These GIDs and UIDs are same on both hosting machines and inside docker containers.
+
+The new Jenkins slave machines have `docker` &  `docker-compose` packages
+installed. To install images required to run Jenkins slave containers use
+`docker-compose.yml` which can be downloaded by following command:
+
+```bash
+git archive \
+        --remote=ssh://git1.dmz.expersoft.com:29418/pm1e/scripts/docker \
+        master \
+        jenkins-slave/docker-compose.yml \
+        | tar -xvf - jenkins-slave/docker-compose.yml --strip=1
+```
+
+The Jenkins slave Docker container can be then started by running following command
+in the directory where `docker-compose.yml` is downloaded:
+```bash
+docker-compose up -d
+```
+
+In order to upgrade docker containers run:
+```bash
+docker-compose down
+docker-compose pull
+docker-compose up -d
+```
