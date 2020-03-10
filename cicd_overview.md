@@ -199,7 +199,7 @@ Here is list of supported swtches:
    1. `mvn install --project <dependency projects> -DskipTests=true` 
    2. `mvn install --project <affected projects> -DskipArquillianTests=true`
    
-* *test:integration|ebp|valuation*:  
+* *test:integration|ebp|valuation*:   
   executes Arquillian tests for pm1-integration-tests, pm1-valuation-it or ebp-it
   projects respectively in addition to normal tests. Effectively adds third
   testing command:
