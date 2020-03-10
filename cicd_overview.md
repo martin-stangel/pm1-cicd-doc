@@ -198,7 +198,6 @@ Here is list of supported swtches:
    tests only affected projects by commands: 
    1. `mvn install --project <dependency projects> -DskipTests=true` 
    2. `mvn install --project <affected projects> -DskipArquillianTests=true`
-   3. `mvn install --project <explicitly selected projects>`
    
 * *test:integration|ebp|valuation*:  
 executes Arquillian tests for pm1-integration-tests, pm1-valuation-it or ebp-it
