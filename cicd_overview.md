@@ -21,7 +21,7 @@ repository*".
 
 Therefore we extracted all functionality into Groovy classes. The pipeline is
 kept simple and merely forwards the calls to classes in
-`com.whitestein.cicd.command` package via `cicd.sh` shell script. `cicd.sh`
+`com.expersoft.pm.cicd.command` package via `cicd.sh` shell script. `cicd.sh`
 script just executes groovy to run `main` method of the command with correct
 `CLASSPATH`. Windows version of the script is named `cicd.bat`, but most of the
 command are not ready to be run on Windows yet.
@@ -180,7 +180,7 @@ afterwards. Pipeline also clears the repository if it exists.
 ### Remaining Phases
 
 After the repository is checked out, remaining stages are executed by calling
-Groovy classes in `com.whitestein.cicd.command` package. See comments in these
+Groovy classes in `com.expersoft.pm.cicd.command` package. See comments in these
 classes.
 
 ## Commit Message Switches Reference
@@ -196,13 +196,13 @@ Here is list of supported swtches:
 
 * *no switch (default)*  
    tests only affected projects by commands: 
-   1. `mvn install --project <dependency projects> -DskipTests=true` 
+   1. `mvn install --project <dependency projects> --also-make -DskipTests=true` 
    2. `mvn install --project <affected projects> -DskipArquillianTests=true`
    
 * *test:integration|ebp|valuation*:   
   executes Arquillian tests for pm1-integration-tests, pm1-valuation-it or ebp-it
   projects respectively in addition to normal tests. Effectively adds third
-  testing command:
+  testing command: 
   3. `mvn install --project <explicitly selected projects>`
 
 * *test:rebase*  
