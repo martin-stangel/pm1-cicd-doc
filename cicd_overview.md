@@ -209,3 +209,30 @@ Here is list of supported swtches:
 Automatically rebases commit on top of its branch at the beginning of pipeline.
 Having this switch enabled lowers probability of broken destination branch when
 verified commit is merged into it.
+
+## Important Maven Profiles
+
+Configuration of build process can be customized by using Maven profiles. Almost
+all of the on-demand activated profiles can be activated by creating a file with
+same name as the profile in `.mvn` directory. E.g. file `<git
+repo>/.mvn/nexus-expersoft` activates profile `nexus-expersoft`.
+
+### Database Selection Profiles
+
+Used database settings can be customized by profiles beginning with `db-`:
+
+* `db-dbhost` sets used database host name to `dbhost`. Must be explicitly set. 
+* `db-localhost` sets used database host name to `localhost`. Must be 
+  explicitly set. 
+
+Typically developers use `db-localhost` on their machines, while CI/CD process
+uses `db-dbhost`.
+
+### Nexus Selection Profiles
+
+As we have ongoing development both in Cham and in Bratislava it makes sense to
+use local Nexus servers for both locations to save up bandwidth. Nexus selecting
+profiles begin with `nexus-`
+
+* `nexus-expersoft` sets up Maven to use Nexus with URL `nexus1.dmz.expersoft.com` 
+* `nexus-whitestein` sets up Maven to use Nexus with URL `pm1-nexus.dmz.whitestein.com` 
